@@ -1,6 +1,7 @@
 from math import sqrt, ceil, floor, pow, sqrt, tan, cos, sin, radians
 from datetime import date
 import datetime
+from time import sleep
 from random import randint, choice, shuffle
 
 n1 = int(input('Digite um número'))
@@ -375,3 +376,94 @@ elif mathVar['computer'] == 'Tesoura' and mathVar['player'] == 'Papel' or mathVa
     print('Vitoria jogador!')
 else:
     print('Vitoria computador!')
+
+for i in range(10, 0, -1):
+    sleep(1)
+    print(i)
+sleep(1)
+print('Bum!!')
+
+for i in range(1 , 50):
+    if i % 2 == 0:
+        print(i)
+
+for i in range(1, 500):
+    if i % 2 != 0 and i % 3 == 0:
+        print(i)
+
+num = int(input('Escreva um número:'))
+print('A tabuada de {} é:'.format(num))
+print('=-' * 11)
+for i in range(0, 11):
+    print('Tabuada de {} para {} é: {}'.format(num, i, num * i))
+print('=-'*11)
+
+value = 0
+for i in range(0, 7):
+    numb = int(input('Digite um número:'))
+    if numb % 2 == 0:
+        value += numb
+print('A soma dos números pares digitados foi {}'.format(value))
+
+termo = int(input('Digite o valor do termo da PA'))
+razao = int(input('Digite o valor da razão da PA'))
+
+for i in range(0, termo, razao):
+    print(i)
+
+number = int(input('Numero: '))
+if number > 1:
+    for i in range(2, number):
+        if number % i == 0:
+            print(number, 'não é primo')
+            break
+    else:
+        print(number, 'é primo')
+elif number == 0:
+    print(number, 'é zero')
+elif number == 1:
+    print(number, 'é um')
+else:
+    print(number, 'é negativo')
+
+scr = str(input('Digite a frase ou palavra')).strip().lower().replace(' ', '')
+
+word = []
+word2 = []
+
+for i in range(len(scr), 0, -1):
+    word.append(scr[i - 1])
+
+for c in range(0, len(scr)):
+    word2.append(scr[c])
+
+if word == word2:
+    print('A frase ou palavra é um políndromo!!')
+else:
+    print('A frase ou palavra não é considerado um políndromo!')
+
+years = []
+for y in range(0, 7):
+    year = int(input('Digite o ano de nascimento'))
+    years.append(year)
+
+for x in range(0, len(years)):
+    if date.today().year - years[x] >= 21:
+        print('As pessoas que nasceram em {}, já são maiores de idade!'.format(years[x]))
+    else:
+        print('As pessoas que nasceram em {}, não são maiores de idade!'.format(years[x]))
+
+maior = 0
+menor = 0
+for i in range(1, 6):
+    peso = float(input('Digite o peso da pessoa número {}: '.format(i)))
+    if i == 1:
+        maior = peso
+        menor = peso
+    else:
+        if peso > maior:
+            maior = peso
+        if peso < maior:
+            menor = peso
+print('O menor peso lido foi de {}Kg'.format(menor))
+print('O maior peso lido foi de {}Kg'.format(maior))
