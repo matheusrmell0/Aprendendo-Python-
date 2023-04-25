@@ -467,3 +467,42 @@ for i in range(1, 6):
             menor = peso
 print('O menor peso lido foi de {}Kg'.format(menor))
 print('O maior peso lido foi de {}Kg'.format(maior))
+
+pessoasList = []
+for i in range(0, 4):
+    print('----', i + 1, 'Pessoa ----')
+    nome = str(input('Nome: ')).strip()
+    idade = int(input('Idade: '))
+    sexo = str(input('Sexo: ')).strip().upper()
+    pessoas = {
+        'pessoa{}'.format(i): [
+            nome,
+            idade,
+            sexo,
+        ]
+    }
+    pessoasList.append(pessoas)
+
+media = 0
+woman = []
+oldMan = []
+olderAge = 0
+
+for p in range(0, len(pessoasList)):
+    media += pessoasList[p]['pessoa{}'.format(p)][1] / len(pessoasList)
+    if pessoasList[p]['pessoa{}'.format(p)][2] == 'F' and pessoasList[p]['pessoa{}'.format(p)][1] < 20:
+        woman.append(pessoasList[p]['pessoa{}'.format(p)][2])
+    if p == 0 and pessoasList[p]['pessoa{}'.format(p)][2] in 'M':
+        olderAge = pessoasList[p]['pessoa{}'.format(p)][1]
+    if pessoasList[p]['pessoa{}'.format(p)][2] in 'M' and pessoasList[p]['pessoa{}'.format(p)][1] > olderAge:
+        oldMan.append(pessoasList[p]['pessoa{}'.format(p)])
+
+print('A média de idade do grupo é de {} anos'.format(media))
+if len(oldMan) > 0:
+    print('O homem mais velho tem {:.0f} anos e se chama {}'.format(oldMan[0][1], oldMan[0][0]))
+else:
+    print('Não existem homens nessa lista')
+if len(woman) > 0:
+    print('Ao todo são {} mulheres com menos de 20 anos'.format(woman.count('F')))
+else:
+    print('Não existem mulheres com menos de 20 anos na lista')
