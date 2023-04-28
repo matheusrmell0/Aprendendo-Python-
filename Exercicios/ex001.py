@@ -506,3 +506,206 @@ if len(woman) > 0:
     print('Ao todo são {} mulheres com menos de 20 anos'.format(woman.count('F')))
 else:
     print('Não existem mulheres com menos de 20 anos na lista')
+
+var = ['M', 'F']
+sexo = ''
+while not('M' in sexo or 'F' in sexo):
+    sexo = str(input('Digite seu sexo'))
+    if sexo == var[0]:
+        print('Masculino')
+    elif sexo == var[1]:
+        print('Feminino')
+
+computer = -2
+player = -1
+tentativas = 1
+print('-=' * 22)
+print('Adivinhe o número do computador entre 0 e 10!')
+while not(computer == player):
+    computer = randint(0,10)
+    player = int(input('Digite um número entre 0 e 10 '))
+    print(computer)
+    print(player)
+    if computer == player:
+        print('Você acertou o número!')
+        print('Você tentou {} vezes antes de acertar!'.format(tentativas))
+    else:
+         print('Errado tente novamente...')
+         tentativas += 1
+
+num = float(input('Digite um número'))
+num2 = float(input('Digite o segundo número'))
+exit = 0
+
+print('-=' * 10)
+print('Digite [1] para Somar')
+print('Digite [2] para Multiplicar')
+print('Digite [3] para saber o Maior')
+print('Digite [4] para digitar novos valores')
+print('Digite [5] para sair do programa')
+while exit != 5:
+    exit = int(input('Digite o comando'))
+    print('-=' * 10)
+    if exit == 1:
+        print('A soma dos dois valores é de {:.1f}'.format(num + num2))
+    elif exit == 2:
+        print('A multiplicação dos dois valores é de {:.1f}'.format(num * num2))
+    elif exit == 3:
+        if num > num2:
+            maior = num
+        else:
+            maior = num2
+        print('O maior valor é o {:.1f}'.format(maior))
+    elif exit == 4:
+        num = float(input('Digite novamente um número'))
+        num2 = float(input('Digite novamente o segundo número'))
+    else:
+
+        print('Programa finalizado')
+
+valor = int(input('Digite um número para saber seu fatorial'))
+result = valor
+fatorial = []
+i = 0
+while i != 1:
+    for i in range(valor - 1,0,-1):
+        fatorial.append(i)
+for i in range(len(fatorial),0, -1):
+    result *= i
+finalResult = ('{}! = {} = {}'.format(valor,fatorial,result))
+print(finalResult.replace(',',' x'))
+
+soma = 0
+cont = 0
+while True:
+    num = int(input('Digite um valor '))
+    if num == 999:
+        break
+    soma += num
+    cont += 1
+
+print(f'A soma dos {cont} números digitados'
+      f' foi de {soma}')
+
+tab = 1
+while tab:
+    tab = int(input('Digite um valor: '))
+    if tab < 0:
+        break
+    print('-=' * 15)
+    print(f'Tabuada de {tab}:')
+    for i in range(0, 11):
+        print(f'{tab} x {i} = {tab * i}')
+    print('-=' * 15)
+print('Tabuada finalizada!')
+
+while True:
+    print('-=' * 22)
+    player = int(input('Digite um valor: '))
+    play = str(input('Digite par ou ímpar [P/I]: ')).upper()
+    print('-=' * 22)
+    cpu = randint(0, 999)
+    result = cpu + player
+    if play == 'I':
+        print(f'O computador jogou {cpu} e você {player} escolhendo Ímpar')
+        if result % 2 != 0:
+            print('-' * 45)
+            print(f'Resultado {result} Ímpar!! Você venceu!')
+            print('-' * 45)
+        else:
+            print('-' * 45)
+            print(f'Resultado {result} Par!! Você perdeu!')
+            print('Fim do jogo')
+            print('-' * 45)
+            break
+    else:
+        print(f'O computador jogou {cpu} e você {player} escolhendo Par')
+        if result % 2 == 0:
+            print('-' * 45)
+            print(f'Resultado {result} Par!! Você venceu!')
+            print('-' * 45)
+        else:
+            print('-' * 45)
+            print(f'Resultado {result} Ímpar!! Você perdeu!')
+            print('Fim do jogo')
+            print('-' * 45)
+            break
+
+pessoas = 0
+sexos = []
+
+while True:
+    print('Cadastrar usuário')
+    idade = int(input('Digite a idade da pessoa: '))
+    sexo = str(input('Digite o sexo da pessoa [M/F]: ')).upper().strip()
+    if idade > 18:
+        pessoas += 1
+    if sexo == 'M':
+        sexos.append(sexo)
+    elif idade < 20 and sexo == 'F':
+        sexos.append(sexo)
+    if idade > 0 and len(sexo) > 0:
+        cadastro = str(input('Gostaria de cadastrar outro usuário? [S/N]')).upper().strip()
+        if cadastro == 'N':
+            break
+
+print('Foram castradas {} pessoas com mais de 18 anos'.format(pessoas))
+print('Foram cadastrados {} homens'.format(sexos.count('M')))
+print('Foram cadastradas {} mulheres com menos de 20 anos'.format(sexos.count('F')))
+
+produtos = {
+    'preço': [],
+    'nome': [],
+    'total': 0,
+    'maior1000': 0,
+}
+
+while True:
+    print('Cadastrar produto:')
+    nome = str(input('Nome do produto: ')).lower().strip().capitalize()
+    value = float(input('Preço do produto: '))
+
+    produtos['nome'].append(nome)
+    produtos['preço'].append(value)
+    produtos['total'] += value
+
+    if value > 1000:
+        produtos['maior1000'] += 1
+
+    clear = str(input('Gostaria de cadastrar outro produto? [S/N]')).upper().strip()
+    if clear == 'N':
+        break
+
+minorPrice = min(produtos['preço'])
+print('*=' * 40)
+print('O total gasto na compra foi de {:.2f}'.format(produtos['total']))
+print('Temos {} produtos que custam mais que R$1000'.format(produtos['maior1000']))
+index = produtos['preço'].index(min((produtos['preço']) for produtos['preço'] in produtos['preço']))
+print('O produto mais barato é o {} e custa R${:.2f}'.format(produtos['nome'][index], minorPrice))
+print('=*' * 40)
+
+print('*=' * 40)
+print('ATM')
+print('=*' * 40)
+
+value = int(input('Digite o valor que quer sacar'))
+total = value
+cedula = 50
+totalCedulas = 0
+
+while True:
+    if total >= cedula:
+        total -= cedula
+        totalCedulas += 1
+    else:
+        if totalCedulas > 0:
+            print('Total de {} cédulas de R${}'.format(totalCedulas, cedula))
+        elif cedula == 50:
+            cedula = 10
+        elif cedula == 20:
+            cedula = 10
+        elif cedula == 10:
+            cedula = 1
+        totalCedulas = 0
+        if total == 0:
+            break
