@@ -1,6 +1,8 @@
 from math import sqrt, ceil, floor, pow, sqrt, tan, cos, sin, radians
+from num2words import num2words
 from datetime import date
 import datetime
+import requests
 from time import sleep
 from random import randint, choice, shuffle
 
@@ -101,7 +103,7 @@ cos = cos(radians(an))
 tan = tan(radians(an))
 print('O ângulo de {} tem o seno de {:.2f}, cosseno de {:.2f} e tangente de {:.3f}'.format(an, sen, cos, tan))
 
-randomNum = randint(0,3)
+randomNum = randint(0, 3)
 list = ['Maria', 'João', 'Pedro', 'Lucas']
 print('O aluno sorteado para apagar o quadro será {}'.format(list[randomNum]))
 print('O aluno sorteado para apagar o quadro será {}'.format(choice(list)))
@@ -124,7 +126,7 @@ print(phrase.strip().rfind('A'))
 name = str(input('Digite seu nome completo'))
 print(name.upper())
 print(name.lower())
-print(name.strip().replace(' ',''))
+print(name.strip().replace(' ', ''))
 print(len(name.split()[0]))
 
 num = str(input('Digite um número de 0 a 9999'))[0:4]
@@ -709,3 +711,50 @@ while True:
         totalCedulas = 0
         if total == 0:
             break
+
+tupla = (0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+
+num = int(input('Digite um número'))
+
+while True:
+    if tupla.count(num) != 0:
+        print('Você digitou o número {}'.format(num2words(num, lang='pt-br')))
+        break
+    else:
+        num = int(input('Digite um número entre 0 e 20'))
+
+auth_token = 'live_e5748c7d449b5b48d6055cd803efe4'
+headers = {'Authorization': f'Bearer {auth_token}'}
+url = 'https://api.api-futebol.com.br/v1/campeonatos/10/fases/317'
+response = requests.get(url, headers=headers)
+
+times = []
+def funcaoBra23(time):
+    return times.append(time)
+
+print('*=' * 12)
+print('Tabela Brasileirão 2023')
+print('*=' * 12)
+
+for i in range(0, len(response.json()['tabela'])):
+    print('{}º Lugar: {}'.format(i + 1, response.json()['tabela'][i]['time']['nome_popular']))
+    funcaoBra23(response.json()['tabela'][i]['time']['nome_popular'])
+
+print('Os 5 primeiros colocados são {}'.format(times[0:5]).replace('[', '').replace(']', '').replace("'", ''))
+
+for i in range(0, len(times[::-1][0:4])):
+    print('Os 4 últimos colocados são os times: {}'.format(times[::-1][0:4]).replace('[', '').replace(']', '').replace("'", ''))
+
+produtos = ('Lápis', 1.75, 'Borracha', 2.0, 'Caderno', 15.9, 'Estojo', 25.0, 'Mochila', 120.32)
+preco = []
+nome = []
+
+for i in range(0, len(produtos)):
+    if type(produtos[i]) == str:
+        nome.append(produtos[i])
+    else:
+        preco.append(produtos[i])
+
+if len(preco) > 0 and len(nome) > 0:
+    for i in range(0, len(produtos)):
+        print('{}.....{}'.format(nome[i], preco[i]))
